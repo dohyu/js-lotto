@@ -16,3 +16,10 @@
 // });
 
 Route::get('/', 'LotteryController@index');
+
+Route::get('/lottery/create', [
+    'as'   => 'lottery.create',
+    'uses' => 'LotteryController@create'
+]);
+
+//Route::resource('/lottery', 'LotteryController');

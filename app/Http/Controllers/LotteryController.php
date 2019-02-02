@@ -9,7 +9,35 @@ class LotteryController extends Controller
 {
     public function index()
     {
-        $this->getNumbers();
+        return view('lottery.index');
+    }
+
+    public function create(Request $request)
+    {
+        $numbers = $this->getNumbers();
+
+        // 일단 기존과 같이..
+        $arr = array_chunk($numbers, 30);
+
+        $firstArr = $arr[0];
+        $secondArr = $arr[1];
+
+        $repeat = $request->input('numbers');
+        for ($i = 0; $i < $repeat; $i++) {
+            shuffle($firstArr);
+            shuffle($secondArr);
+
+            $res = [];
+            for ($j = 0; $j < 6; $j++) {
+                array_push($res, sprintf("%02d", $firstArr[$j]));
+            }
+
+            asort($res);
+            
+            $lists[] = implode(', ', $res);
+        }
+
+        return view('lottery.create', compact('lists'));
     }
 
     public function getNumbers()
@@ -28,6 +56,6 @@ class LotteryController extends Controller
             array_push($numbers, $node->text());
         });
 
-        print_r($numbers);
+        return $numbers;
     }
 }
