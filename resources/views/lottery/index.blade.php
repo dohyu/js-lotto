@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button class="btn btn-primary btn-lg">1등 가즈아!</button>
+                    <button class="btn btn-primary btn-lg form-control">1등 가즈아!</button>
                 </div>
             </form>
         </div>

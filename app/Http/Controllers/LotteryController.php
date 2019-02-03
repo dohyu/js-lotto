@@ -23,6 +23,10 @@ class LotteryController extends Controller
         $secondArr = $arr[1];
 
         $repeat = $request->input('numbers');
+        if (! $repeat) {
+            $repeat = 5;
+        }
+
         for ($i = 0; $i < $repeat; $i++) {
             shuffle($firstArr);
             shuffle($secondArr);
